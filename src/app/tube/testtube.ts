@@ -3,10 +3,11 @@ import { Color } from './color.enum';
 export class TestTube {
     content = Array<Color>();
 
-    constructor(initial: Color[]) {
-        for (var i = 0; i < initial.length; i++) {
-            this.content[i] = initial[i];
-        }
+    constructor() { }
+
+    init(color: Color): TestTube {
+        this.content.push(color);
+        return this;
     }
 
     add(color: Color, amount: number): boolean {
@@ -27,12 +28,12 @@ export class TestTube {
         return this.isEmpty() || this.getLatestColor() == color;
     }
 
-    isEmpty(): boolean
-    {
+    isEmpty(): boolean {
         return this.content.length == 0;
     }
 
     getLatestColor(): Color {
+        console.log("Content", this.content);
         if (this.isEmpty()) {
             return Color.FREE;
         }
