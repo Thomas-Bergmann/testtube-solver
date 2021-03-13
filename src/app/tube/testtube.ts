@@ -1,6 +1,6 @@
 import { Color } from './color.enum';
 
-export class Testtube {
+export class TestTube {
     content = Array<Color>();
 
     constructor(initial: Color[]) {

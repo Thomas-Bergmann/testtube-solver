@@ -1,10 +1,10 @@
 import { Color } from './color.enum';
-import { Testtube } from './testtube';
+import { TestTube } from './testtube';
 
-describe('Testtube', () => {
+describe('TestTube', () => {
   it('should create an empty test tube', () => {
     var initial = Array<Color>();
-    var tube = new Testtube(initial);
+    var tube = new TestTube(initial);
     expect(tube).toBeTruthy();
     expect(tube.isEmpty()).toBe(true);
     expect(tube.isFull()).toBe(false);
@@ -16,7 +16,7 @@ describe('Testtube', () => {
     var initial = Array<Color>();
     initial[1] = Color.ORANGE;
     initial[0] = Color.RED;
-    var tube = new Testtube(initial);
+    var tube = new TestTube(initial);
     expect(tube).toBeTruthy();
     expect(tube.isEmpty()).toBe(false);
     expect(tube.isFull()).toBe(false);
