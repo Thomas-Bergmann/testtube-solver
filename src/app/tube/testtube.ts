@@ -24,6 +24,22 @@ export class TestTube {
         return 4 == this.content.length;
     }
 
+    isFinished(): boolean {
+        if (this.isEmpty()) {
+            return true;
+        }
+        if (!this.isFull()) {
+            return false;
+        }
+        var color = this.content[0];
+        for(var i=1; i<4;i++) {
+            if (color != this.content[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     isColorMatching(color: Color): boolean {
         return this.isEmpty() || this.getLatestColor() == color;
     }
@@ -33,10 +49,23 @@ export class TestTube {
     }
 
     getLatestColor(): Color {
-        console.log("Content", this.content);
         if (this.isEmpty()) {
             return Color.FREE;
         }
         return this.content[this.content.length - 1];
+    }
+
+    getAmountOfLatestColor(): number {
+        var result = 2;
+        var color = this.getLatestColor();
+        while(this.content[this.content.length - result] == color)
+        {
+            result++;
+        }
+        return result - 1;
+    }
+
+    hasSpace(requiredSpace: number):boolean {
+        return requiredSpace < 5 - this.content.length;
     }
 }
