@@ -39,4 +39,16 @@ describe('TestTube', () => {
     expect(tube.hasSpace(3)).toBe(false);
     expect(tube.hasSpace(2)).toBe(true);
   });
+  it('should remove color', () => {
+    var source = new TestTube().init(Color.RED).init(Color.ORANGE);
+    var result = new TestTube().init(Color.RED);
+    expect(source.remove(1)).toEqual(result);
+    var source = new TestTube().init(Color.RED).init(Color.ORANGE).init(Color.ORANGE);
+    expect(source.remove(2)).toEqual(result);
+  });
+  it('should add color', () => {
+    var source = new TestTube().init(Color.ORANGE).init(Color.RED);
+    var result = new TestTube().init(Color.ORANGE).init(Color.RED).init(Color.RED).init(Color.RED);
+    expect(source.add(Color.RED, 2)).toEqual(result);
+  });
 });

@@ -10,16 +10,6 @@ export class TestTube {
         return this;
     }
 
-    add(color: Color, amount: number): boolean {
-        if (this.isFull() || !this.isColorMatching(color)) {
-            return false;
-        }
-        for (var i = 0; i < amount; i++) {
-            this.content.push(color);
-        }
-        return true;
-    }
-
     isFull(): boolean {
         return 4 == this.content.length;
     }
@@ -67,5 +57,24 @@ export class TestTube {
 
     hasSpace(requiredSpace: number):boolean {
         return requiredSpace < 5 - this.content.length;
+    }
+
+    add(color: Color, amount: number) : TestTube {
+        var result = new TestTube();
+        for(var i=0;i<this.content.length;i++) {
+            result.init(this.content[i]);
+        }
+        for(var i=0;i<amount;i++) {
+            result.init(color);
+        }
+        return result;
+    }
+
+    remove(amount:number) : TestTube {
+        var result = new TestTube();
+        for(var i=0;i<this.content.length - amount;i++) {
+            result.init(this.content[i]);
+        }
+        return result;
     }
 }
