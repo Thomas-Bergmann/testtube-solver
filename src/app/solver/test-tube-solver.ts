@@ -1,33 +1,67 @@
 import { TestTube } from "../tube/testtube";
 import { Move } from "../solver/move";
+import { Color } from "../tube/color.enum";
 
 export class TestTubeSolver {
+    usedSteps = Array<String>();
+
     constructor() { }
 
     getSolution(tubes: TestTube[]): Array<Move> {
         return this.getNextStep(tubes, new Array<Move>());
     }
 
-    printMoves(moves:Move[]) {
+    printMoves(moves: Move[]) {
         var result = "";
-        for(var i=0; i<moves.length; i++) {
+        for (var i = 0; i < moves.length; i++) {
             result = result + moves[i].toString() + " ";
         }
         console.log(result);
     }
 
+    getStep(tubes: TestTube[]): String {
+        return tubes.map((t) => t.hash()).join(";");
+    }
+
+    getSummary(tubes: TestTube[]): boolean {
+        var colorMap = new Map<Color, number>();
+        for (var i = 0; i < tubes.length; i++) {
+            var tube = tubes[i];
+            var colors = tube.getColors();
+            for (var j = 0; j < colors.length; j++) {
+                var color = colors[j];
+                var amount = colorMap.get(color);
+                if (amount === undefined) {
+                    colorMap.set(color, 1);
+                } else {
+                    amount++;
+                    colorMap.set(color, amount);
+                }
+            }
+        }
+        colorMap.forEach((value, key) => console.log(key, value));
+        return true;
+    }
+
     private getNextStep(tubes: TestTube[], previousMoves: Move[]): Array<Move> {
-        var possibleMoves = this.findPossibleMoves(tubes);
-        var sortedMoves = this.sortMoves(possibleMoves);
-        if (this.isFinished(sortedMoves[0].apply()))
+        var hash = this.getStep(tubes);
+        if (this.usedSteps.includes(hash))
         {
+            return new Array<Move>();
+        }
+        this.usedSteps.push(hash);
+        // console.log("pre:", previousMoves);
+        var possibleMoves = this.findPossibleMoves(tubes);
+        if (possibleMoves.length == 0) {
+            return new Array<Move>();
+        }
+        var sortedMoves = this.sortMoves(possibleMoves);
+        if (this.isFinished(sortedMoves[0].apply())) {
             return previousMoves.concat(sortedMoves[0]);
         }
-        for(var i=0;i < sortedMoves.length; i++)
-        {
+        for (var i = 0; i < sortedMoves.length; i++) {
             var option = this.getNextStep(sortedMoves[i].apply(), previousMoves.concat(sortedMoves[i]));
-            if (option.length > 0 || this.isFinished(option[option.length -1].apply()))
-            {
+            if (option.length > 0 && this.isFinished(option[option.length - 1].apply())) {
                 return option;
             }
         }
@@ -35,7 +69,7 @@ export class TestTubeSolver {
     }
 
     private sortMoves(moves: Move[]): Array<Move> {
-        return moves.sort((a,b) => this.getWeightOfStep(a.apply()) - this.getWeightOfStep(b.apply()));
+        return moves.sort((a, b) => this.getWeightOfStep(a.apply()) - this.getWeightOfStep(b.apply()));
     }
 
     isFinished(tubes: TestTube[]): boolean {

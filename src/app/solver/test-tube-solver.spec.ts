@@ -38,7 +38,16 @@ describe('TestTubeSolver', () => {
     const tube3 = new TestTube().init(Color.ORANGE).init(Color.BLUE).init(Color.RED).init(Color.ORANGE);
     const tubes = Array<TestTube>(tube1, tube2, tube3, new TestTube(), new TestTube());
     const moves = solver.getSolution(tubes);
-    solver.printMoves(moves);
+    expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
+  });
+  it('solve level 5', () => {
+    const tube1 = new TestTube().init(Color.AQUA).init(Color.ORANGE).init(Color.BLUE).init(Color.PINK);
+    const tube2 = new TestTube().init(Color.ORANGE).init(Color.AQUA).init(Color.BLUE).init(Color.PINK);
+    const tube3 = new TestTube().init(Color.PINK).init(Color.RED).init(Color.ORANGE).init(Color.RED);
+    const tube4 = new TestTube().init(Color.ORANGE).init(Color.PINK).init(Color.RED).init(Color.BLUE);
+    const tube5 = new TestTube().init(Color.AQUA).init(Color.AQUA).init(Color.RED).init(Color.BLUE);
+    const tubes = Array<TestTube>(tube1, tube2, tube3, tube4, tube5, new TestTube(), new TestTube());
+    const moves = solver.getSolution(tubes);
     expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
   });
 });
