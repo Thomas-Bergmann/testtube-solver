@@ -77,4 +77,14 @@ export class TestTube {
         }
         return result;
     }
+
+    getNumberOfColorSwitches(): number {
+        var result = 0;
+        for(var i=1;i<this.content.length;i++) {
+            if (this.content[i-1] != this.content[i]) {
+                result++;
+            }
+        }
+        return result;
+    }
 }

@@ -51,4 +51,10 @@ describe('TestTube', () => {
     var result = new TestTube().init(Color.ORANGE).init(Color.RED).init(Color.RED).init(Color.RED);
     expect(source.add(Color.RED, 2)).toEqual(result);
   });
+  it('should count color switches', () => {
+    var tube = new TestTube().init(Color.ORANGE).init(Color.RED);
+    expect(tube.getNumberOfColorSwitches()).toBe(1);
+    var tube = new TestTube().init(Color.ORANGE).init(Color.RED).init(Color.RED).init(Color.ORANGE);
+    expect(tube.getNumberOfColorSwitches()).toBe(2);
+  });
 });
