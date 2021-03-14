@@ -26,6 +26,12 @@ export class Move {
 
     isPossible(): boolean {
         var targetTube = this.tubes[this.target];
+        var sourceTube = this.tubes[this.source];
+        // fill not in empty tube if source has only one color
+        if (targetTube.isEmpty() && sourceTube.getNumberOfColorSwitches() ==0)
+        {
+            return false;
+        }
         return targetTube.isEmpty() ||
             this.color == targetTube.getLatestColor()
             && targetTube.hasSpace(this.amount);
