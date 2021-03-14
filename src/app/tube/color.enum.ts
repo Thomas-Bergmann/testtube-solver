@@ -11,5 +11,5 @@ export enum Color {
     CYAN = "CYAN",
     YELLOW = "YELLOW",
     PURPLE = "PURPLE",
-    AQUA = "AQUA",
+    AZURE = "AZURE",
 }

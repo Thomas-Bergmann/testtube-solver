@@ -41,11 +41,11 @@ describe('TestTubeSolver', () => {
     expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
   });
   it('solve level 5', () => {
-    const tube1 = new TestTube().init(Color.AQUA).init(Color.ORANGE).init(Color.BLUE).init(Color.PINK);
-    const tube2 = new TestTube().init(Color.ORANGE).init(Color.AQUA).init(Color.BLUE).init(Color.PINK);
+    const tube1 = new TestTube().init(Color.AZURE).init(Color.ORANGE).init(Color.BLUE).init(Color.PINK);
+    const tube2 = new TestTube().init(Color.ORANGE).init(Color.AZURE).init(Color.BLUE).init(Color.PINK);
     const tube3 = new TestTube().init(Color.PINK).init(Color.RED).init(Color.ORANGE).init(Color.RED);
     const tube4 = new TestTube().init(Color.ORANGE).init(Color.PINK).init(Color.RED).init(Color.BLUE);
-    const tube5 = new TestTube().init(Color.AQUA).init(Color.AQUA).init(Color.RED).init(Color.BLUE);
+    const tube5 = new TestTube().init(Color.AZURE).init(Color.AZURE).init(Color.RED).init(Color.BLUE);
     const tubes = Array<TestTube>(tube1, tube2, tube3, tube4, tube5, new TestTube(), new TestTube());
     const moves = solver.getSolution(tubes);
     expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
@@ -56,10 +56,10 @@ describe('TestTubeSolver', () => {
     const tube3 = new TestTube().init(Color.RED).init(Color.ORANGE).init(Color.GREEN).init(Color.GRAY);
     const tube4 = new TestTube().init(Color.PINK).init(Color.BROWN).init(Color.RED).init(Color.BLUE);
     const tube5 = new TestTube().init(Color.FOREST).init(Color.BLUE).init(Color.YELLOW).init(Color.ORANGE);
-    const tube6 = new TestTube().init(Color.BLUE).init(Color.ORANGE).init(Color.AQUA).init(Color.YELLOW);
-    const tube7 = new TestTube().init(Color.CYAN).init(Color.AQUA).init(Color.AQUA).init(Color.BLUE);
+    const tube6 = new TestTube().init(Color.BLUE).init(Color.ORANGE).init(Color.AZURE).init(Color.YELLOW);
+    const tube7 = new TestTube().init(Color.CYAN).init(Color.AZURE).init(Color.AZURE).init(Color.BLUE);
     const tube8 = new TestTube().init(Color.GREEN).init(Color.FOREST).init(Color.PURPLE).init(Color.PINK);
-    const tube9 = new TestTube().init(Color.YELLOW).init(Color.FOREST).init(Color.AQUA).init(Color.GREEN);
+    const tube9 = new TestTube().init(Color.YELLOW).init(Color.FOREST).init(Color.AZURE).init(Color.GREEN);
     const tubeA = new TestTube().init(Color.CYAN).init(Color.BROWN).init(Color.GRAY).init(Color.PURPLE);
     const tubeB = new TestTube().init(Color.CYAN).init(Color.GRAY).init(Color.PURPLE).init(Color.FOREST);
     const tubeC = new TestTube().init(Color.PINK).init(Color.RED).init(Color.RED).init(Color.YELLOW);
@@ -69,6 +69,25 @@ describe('TestTubeSolver', () => {
     // solver.getSummary(tubes);
     const moves = solver.getSolution(tubes);
     solver.printMoves(moves);
+    expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
+  });
+  it('solve level 165', () => {
+    const tube1 = new TestTube().init(Color.AZURE).init(Color.GRAY).init(Color.GREEN).init(Color.BLUE);
+    const tube2 = new TestTube().init(Color.PINK).init(Color.GREEN).init(Color.BLUE).init(Color.RED);
+    const tube3 = new TestTube().init(Color.BROWN).init(Color.GREEN).init(Color.FOREST).init(Color.AZURE);
+    const tube4 = new TestTube().init(Color.PURPLE).init(Color.ORANGE).init(Color.PINK).init(Color.YELLOW);
+    const tube5 = new TestTube().init(Color.FOREST).init(Color.BROWN).init(Color.GREEN).init(Color.RED);
+    const tube6 = new TestTube().init(Color.PURPLE).init(Color.ORANGE).init(Color.PURPLE).init(Color.BLUE);
+    const tube7 = new TestTube().init(Color.CYAN).init(Color.ORANGE).init(Color.BROWN).init(Color.RED);
+    const tube8 = new TestTube().init(Color.YELLOW).init(Color.AZURE).init(Color.ORANGE).init(Color.AZURE);
+    const tube9 = new TestTube().init(Color.PINK).init(Color.GRAY).init(Color.GRAY).init(Color.PINK);
+    const tubeA = new TestTube().init(Color.FOREST).init(Color.FOREST).init(Color.BLUE).init(Color.YELLOW);
+    const tubeB = new TestTube().init(Color.RED).init(Color.BROWN).init(Color.CYAN).init(Color.PURPLE);
+    const tubeC = new TestTube().init(Color.CYAN).init(Color.YELLOW).init(Color.CYAN).init(Color.GRAY);
+    const tubes = Array<TestTube>(tube1, tube2, tube3, tube4, tube5, tube6, tube7, tube8, tube9,
+      tubeA, tubeB, tubeC,
+      new TestTube(), new TestTube());
+    const moves = solver.getSolution(tubes);
     expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
   });
 });
