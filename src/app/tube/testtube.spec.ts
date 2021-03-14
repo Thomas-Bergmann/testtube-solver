@@ -57,4 +57,8 @@ describe('TestTube', () => {
     var tube = new TestTube().init(Color.ORANGE).init(Color.RED).init(Color.RED).init(Color.ORANGE);
     expect(tube.getNumberOfColorSwitches()).toBe(2);
   });
+  it('should define hash', () => {
+    var tube = new TestTube().init(Color.ORANGE).init(Color.RED);
+    expect(tube.hash()).toEqual("ORANGE,RED");
+  });
 });

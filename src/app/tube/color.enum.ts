@@ -2,5 +2,14 @@ export enum Color {
     FREE = "(empty)",
     BLUE = "BLUE",
     ORANGE = "ORANGE",
-    RED = "RED"
+    RED = "RED",
+    BROWN = "BROWN",
+    GRAY = "GRAY",
+    PINK = "PINK",
+    GREEN = "GREEN",
+    FOREST = "FOREST",
+    CYAN = "CYAN",
+    YELLOW = "YELLOW",
+    PURPLE = "PURPLE",
+    AQUA = "AQUA",
 }
