@@ -1,3 +1,6 @@
 export enum Color {
-    FREE, ORANGE, RED
+    FREE = "(empty)",
+    BLUE = "BLUE",
+    ORANGE = "ORANGE",
+    RED = "RED"
 }
