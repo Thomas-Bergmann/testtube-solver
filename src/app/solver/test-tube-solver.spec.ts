@@ -22,6 +22,22 @@ describe('TestTubeSolver', () => {
     const tube3 = new TestTube();
     const tubes = Array<TestTube>(tube1, tube2, tube3);
     const moves = solver.getSolution(tubes);
+    expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
+  });
+  it('solve level 3', () => {
+    const tube1 = new TestTube().init(Color.BLUE).init(Color.ORANGE).init(Color.RED).init(Color.BLUE);
+    const tube2 = new TestTube().init(Color.ORANGE).init(Color.ORANGE).init(Color.RED).init(Color.BLUE);
+    const tube3 = new TestTube().init(Color.RED).init(Color.BLUE).init(Color.ORANGE).init(Color.RED);
+    const tubes = Array<TestTube>(tube1, tube2, tube3, new TestTube(), new TestTube());
+    const moves = solver.getSolution(tubes);
+    expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
+  });
+  it('solve level 4', () => {
+    const tube1 = new TestTube().init(Color.BLUE).init(Color.RED).init(Color.ORANGE).init(Color.ORANGE);
+    const tube2 = new TestTube().init(Color.BLUE).init(Color.RED).init(Color.BLUE).init(Color.RED);
+    const tube3 = new TestTube().init(Color.ORANGE).init(Color.BLUE).init(Color.RED).init(Color.ORANGE);
+    const tubes = Array<TestTube>(tube1, tube2, tube3, new TestTube(), new TestTube());
+    const moves = solver.getSolution(tubes);
     solver.printMoves(moves);
     expect(solver.isFinished(moves[moves.length - 1].apply())).toBe(true);
   });
