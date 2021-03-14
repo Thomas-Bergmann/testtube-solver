@@ -12,13 +12,21 @@ describe('Move', () => {
     expect(move.getColor()).toBe(Color.ORANGE);
     expect(move.isPossible()).toBe(true);
   });
-  it('should not be possible', () => {
+  it('should not be possible - wrong color', () => {
     var tube1 = new TestTube().init(Color.RED);
     var tube2 = new TestTube().init(Color.ORANGE).init(Color.ORANGE);
     var tubes = new Array<TestTube>();
     tubes.push(tube1, tube2);
     var move = new Move(tubes, 0, 1);
     expect(move.getColor()).toBe(Color.RED);
+    expect(move.isPossible()).toBe(false);
+  });
+  it('should not be possible - useless', () => {
+    var tube1 = new TestTube().init(Color.RED).init(Color.RED);
+    var tube2 = new TestTube();
+    var tubes = new Array<TestTube>();
+    tubes.push(tube1, tube2);
+    var move = new Move(tubes, 0, 1);
     expect(move.isPossible()).toBe(false);
   });
   it('should apply move', () => {
