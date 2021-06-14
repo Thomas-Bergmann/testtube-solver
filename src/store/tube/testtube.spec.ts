@@ -1,4 +1,4 @@
-import { Color } from './color.enum';
+import { Color } from 'src/store/color/color.enum';
 import { TestTube } from './testtube';
 
 describe('TestTube', () => {

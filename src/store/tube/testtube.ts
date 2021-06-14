@@ -1,4 +1,4 @@
-import { Color } from './color.enum';
+import { Color } from 'src/store/color';
 
 export class TestTube {
     content = Array<Color>();

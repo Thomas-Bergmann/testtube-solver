@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { Color } from 'src/app/tube/color.enum';
+import { Color } from 'src/store/color';
 
-export const clickTube = createAction(
-  'Click Tube',
-  props<{ tubeIndex: number }>()
+export const addColor = createAction(
+  'Add Color',
+  props<{ color: Color }>()
 );
 
 export const clickColor = createAction(
