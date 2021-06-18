@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ColorState, Color, ColorCounter, addColor, incrementColor, selectColors } from '../../../store/color';
+import { TubeState, TestTube, addColorToTube, selectTubes } from 'src/store/tube';
+import { ColorState, Color, ColorCounter, addColor, incrementColor, selectColors, RGBColor } from '../../../store/color';
 
 @Component({
   selector: 'app-root',
@@ -13,26 +14,26 @@ import { ColorState, Color, ColorCounter, addColor, incrementColor, selectColors
 
 export class AppComponent implements OnInit {
   title = 'testtube-solver';
-  availableColors$: Observable<readonly ColorCounter[]>;
-  demo1Color : ColorCounter = { color:Color.AZURE, counter:3};
-  demo2Color : ColorCounter = { color:Color.BROWN, counter:1};
+  colors$: Observable<readonly ColorCounter[]>;
+  tubes$: Observable<readonly TestTube[]>;
 
-  constructor(private readonly store: Store<ColorState>) {
-    this.availableColors$ = store.select(selectColors);
-    console.log("store", store);
+  constructor(
+    private readonly colorStore: Store<ColorState>,
+    private readonly tubeStore: Store<TubeState>
+  ) {
+    this.colors$ = colorStore.select(selectColors);
+    this.tubes$ = tubeStore.select(selectTubes);
   }
 
   ngOnInit(): void {
-    this.availableColors$.subscribe((c) => console.log("mod available colors", c));
-    this.store.dispatch(addColor({ color : Color.RED }));
-    this.store.dispatch(incrementColor({ color : Color.BLUE }));
-    // this.store.dispatch(clickColor({ color : Color.AZURE }));
-    // this.store.dispatch(clickColor({ color : Color.BLUE }));
-    // this.store.dispatch(clickColor({ color : Color.RED }));
+    RGBColor.forEach((value: String, key: Color) => {
+      this.colorStore.dispatch(addColor({ color : key }));
+    });
   }
 
   _clickColor(colorCounter: ColorCounter)
   {
-    // this.store.dispatch(clickColor({ color : colorCounter.color }))
+    this.colorStore.dispatch(incrementColor({ color : colorCounter.color }))
+    this.tubeStore.dispatch(addColorToTube({ color : colorCounter.color }))
   }
 }

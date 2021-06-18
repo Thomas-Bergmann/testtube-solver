@@ -1,29 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Color, ColorCounter, FontColor, RGBColor} from 'src/store/color';
+import { Color, RGBColor} from 'src/store/color';
 
 @Component({
-  selector: 'color-counter',
+  selector: 'color',
   templateUrl: './color.component.html',
   styleUrls: ['./color.component.sass']
 })
 export class ColorComponent implements OnInit {
-  @Input() colorCounter : ColorCounter = { color : Color.AZURE, counter : -1 };
+  @Input() color : Color = Color.FREE;
   backColor: string = "";
-  fontColor: string = "";
 
   ngOnInit(): void {
-    var backColor = RGBColor.get(this.colorCounter.color);
+    var backColor = RGBColor.get(this.color);
     if (backColor == undefined) {
       this.backColor = RGBColor.get(Color.FREE) || "gray";
     } else {
       this.backColor = backColor;
     }
-    var fontColor = FontColor.get(this.colorCounter.color);
-    if (fontColor == undefined) {
-      this.fontColor = FontColor.get(Color.FREE) || "black";
-    } else {
-      this.fontColor = fontColor;
-    }
   }
-
 }

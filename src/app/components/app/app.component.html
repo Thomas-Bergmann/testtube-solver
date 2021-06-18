@@ -1,11 +1,13 @@
 <h1>{{title}}</h1>
-<div class="demo">
-<color-counter [colorCounter]="demo1Color"></color-counter>
-<color-counter [colorCounter]="demo2Color"></color-counter>
-</div>
-<h1>availableColors</h1>
-<div class="availableColors">
-<div *ngFor="let colorCounter of availableColors$ | async" (click)="_clickColor(colorCounter)">
+<h1>Colors</h1>
+<div class="colors">
+<div *ngFor="let colorCounter of colors$ | async" (click)="_clickColor(colorCounter)">
     <color-counter [colorCounter]="colorCounter"></color-counter>
+</div>
+</div>
+<h1>Tubes</h1>
+<div class="tubes">
+<div *ngFor="let tube of tubes$ | async">
+    <tube [tube]="tube"></tube>
 </div>
 </div>

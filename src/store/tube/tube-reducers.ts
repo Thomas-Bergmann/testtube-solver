@@ -6,7 +6,7 @@ import { Color } from "../color/color-models";
 
 export const tubeFeatureKey = 'tubeState';
 const initialState : TubeState = {
-    tubes : []
+    tubes : [new TestTube(), new TestTube()]
 }
 
 const _tubeReducer = createReducer(
