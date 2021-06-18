@@ -13,7 +13,7 @@ export class ColorComponent implements OnInit {
   ngOnInit(): void {
     var backColor = RGBColor.get(this.color);
     if (backColor == undefined) {
-      this.backColor = RGBColor.get(Color.FREE) || "gray";
+      this.backColor = RGBColor.get(Color.FREE) || "#eee";
     } else {
       this.backColor = backColor;
     }
