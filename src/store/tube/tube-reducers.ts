@@ -4,6 +4,7 @@ import { TestTube, TubeState } from "./tube-models";
 import { addColorToTube } from "./tube-actions";
 import { Color } from "../color/color-models";
 
+export const tubeFeatureKey = 'tubeState';
 const initialState : TubeState = {
     tubes : []
 }

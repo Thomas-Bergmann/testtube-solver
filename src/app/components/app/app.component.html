@@ -1,12 +1,11 @@
 <h1>{{title}}</h1>
-<div>
+<div class="demo">
 <color-counter [colorCounter]="demo1Color"></color-counter>
 <color-counter [colorCounter]="demo2Color"></color-counter>
 </div>
-
-<!--
-    <color-counter *ngIf="activeColor$ | async" [colorCounter]="activeColor$"></color-counter>
-<li *ngFor="let colorCounter of availableColors$ | async" (click)="_clickColor(colorCounter)">
+<h1>availableColors</h1>
+<div class="availableColors">
+<div *ngFor="let colorCounter of availableColors$ | async" (click)="_clickColor(colorCounter)">
     <color-counter [colorCounter]="colorCounter"></color-counter>
-</li>
--->
+</div>
+</div>

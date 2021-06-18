@@ -2,6 +2,8 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { Color, ColorCounter, ColorState } from 'src/store/color';
 import { addColor, incrementColor } from './color-actions';
 
+export const colorFeatureKey = 'colorState';
+
 const initialState : ColorState = {
   colors : []
 }
