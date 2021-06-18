@@ -1,35 +1,30 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Color, ColorCounter } from 'src/store/color';
-import { TestTube } from 'src/store/tube';
-import { addColor, clickColor } from './app-actions';
-import { AppState } from './app-selector';
+import { Color, ColorCounter, ColorState } from 'src/store/color';
+import { addColor, incrementColor } from './color-actions';
 
-export const initialState : AppState = {
-  colors : [],
-  tubes : [new TestTube(), new TestTube()],
-  activeColor: Color.AZURE
+const initialState : ColorState = {
+  colors : []
 }
 
-const _appReducer = createReducer(
+const _colorReducer = createReducer(
   initialState,
-  on(addColor, (state, action) => _addColorToApp(state, action.color)),
-  on(clickColor, (state, action) => _clickColorToApp(state, action.color)),
+  on(addColor, (state, action) => _addColorToState(state, action.color)),
+  on(incrementColor, (state, action) => _incrementColorToState(state, action.color)),
 );
 
-export function appReducer(state: AppState | undefined, action: Action) {
-  return _appReducer(state, action);
+export function colorReducer(state: ColorState | undefined, action: Action) {
+  return _colorReducer(state, action);
 }
 
-function _addColorToApp(state:AppState, color:Color):AppState
+function _addColorToState(state:ColorState, color:Color):ColorState
 {
   return ({
     ...state,
-    activeColor: color,
     colors: _addColorToColors(state.colors, color),
   });
 }
 
-function _clickColorToApp(state:AppState, color:Color):AppState
+function _incrementColorToState(state:ColorState, color:Color):ColorState
 {
   var positionColor = _findColor(state.colors, color);
   // clicked color is used fully
@@ -37,37 +32,10 @@ function _clickColorToApp(state:AppState, color:Color):AppState
   {
     return state;
   }
-  // add new color (and one tube)
-  var newTubes : TestTube[] = Object.assign([], state.tubes);
-  if (positionColor == -1 || positionColor == 0)
-  {
-    console.log("add tube for new color", color);
-    newTubes.push(new TestTube());
-  }
   return ({
     ...state,
-    activeColor: color,
     colors: _addUsedColor(state.colors, color),
-    tubes: _addColor(newTubes, color)
   });
-}
-
-function _addColor(tubes : ReadonlyArray<TestTube>, color : Color) : ReadonlyArray<TestTube>
-{
-  var doReplace = true;
-  var result : TestTube[] = [];
-  for (var _i = 0; _i < tubes.length; _i++) {
-    var tube = tubes[_i];
-    if (doReplace && !tube.isFull())
-    {
-      result.push(tube.add(color, 1));
-      doReplace = false;
-    }
-    else{
-      result.push(tube);
-    }
-  }
-  return result;
 }
 
 function _addUsedColor(colors: ReadonlyArray<ColorCounter>, color: Color) : ReadonlyArray<ColorCounter> {

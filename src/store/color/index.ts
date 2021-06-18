@@ -1,2 +1,4 @@
-export * from './color.enum';
-export * from './color-counter';
+export * from './color-models';
+export * from './color-reducers';
+export * from './color-actions';
+export * from './color-selectors';

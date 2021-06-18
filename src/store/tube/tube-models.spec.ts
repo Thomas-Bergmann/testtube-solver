@@ -1,5 +1,5 @@
-import { Color } from 'src/store/color/color.enum';
-import { TestTube } from './testtube';
+import { Color } from 'src/store/color';
+import { TestTube } from './tube-models';
 
 describe('TestTube', () => {
   it('should create an empty test tube', () => {

@@ -1,5 +1,9 @@
 import { Color } from 'src/store/color';
 
+export interface TubeState {
+    tubes: ReadonlyArray<TestTube>;
+}
+
 export class TestTube {
     content = Array<Color>();
 
