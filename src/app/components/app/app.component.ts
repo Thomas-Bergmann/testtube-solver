@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   colors$: Observable<readonly ColorCounter[]>;
   tubes$: Observable<readonly TestTube[]>;
   moves$: Observable<readonly Move[]>;
+  steps: readonly TestTube[] = [];
   staticTubes: ReadonlyArray<TestTube> = [];
 
   constructor(
@@ -65,5 +66,10 @@ export class AppComponent implements OnInit {
   _solveProblem()
   {
     this.solutionStore.dispatch(solveProblem({ tubes : this.staticTubes }));
+  }
+
+  _clickMove(move: Move)
+  {
+    this.steps = move.getTubesAfterMove();
   }
 }

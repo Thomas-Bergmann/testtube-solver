@@ -29,6 +29,12 @@ export class Move {
     getTarget(): number {
         return this.target;
     }
+    getTubesBeforeMove(): readonly TestTube[] {
+        return this.tubes;
+    }
+    getTubesAfterMove(): readonly TestTube[] {
+        return this.apply();
+    }
 
     toString(): String {
         return this.color.toString() + "(" + (this.source + 1) + ":" + (this.target+1) + ")";

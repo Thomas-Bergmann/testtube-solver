@@ -3,6 +3,7 @@
 <th>Colors</th>
 <th>Tubes</th>
 <th (click)="_solveProblem()">Solution</th>
+<th>Show Solution Step</th>
 <tr>
 <td class="colors">
 <div *ngFor="let colorCounter of colors$ | async" (click)="_clickColor(colorCounter)">
@@ -14,9 +15,14 @@
         <tube [tube]="tube"></tube>
     </div>
 </td>
-<td class="solution">
+<td class="solution" (click)="_solveProblem()">
     <div *ngFor="let move of moves$ | async">
-        <move [move]="move"></move>
+        <move [move]="move" (click)="_clickMove(move)"></move>
+    </div>
+</td>
+<td class="tubes">
+    <div *ngFor="let tube of steps">
+        <tube [tube]="tube"></tube>
     </div>
 </td>
 </tr>
