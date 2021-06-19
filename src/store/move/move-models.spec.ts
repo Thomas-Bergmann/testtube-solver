@@ -1,4 +1,4 @@
-import { Move } from './move';
+import { Move } from './move-models';
 import { Color } from '../tube/color.enum';
 import { TestTube } from '../tube/testtube';
 

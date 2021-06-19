@@ -28,12 +28,6 @@ function _addColorToState(state:ColorState, color:Color):ColorState
 
 function _incrementColorToState(state:ColorState, color:Color):ColorState
 {
-  var positionColor = _findColor(state.colors, color);
-  // clicked color is used fully
-  if (positionColor > -1 && state.colors[positionColor].counter == 4)
-  {
-    return state;
-  }
   return ({
     ...state,
     colors: _addUsedColor(state.colors, color),
@@ -50,7 +44,6 @@ function _addUsedColor(colors: ReadonlyArray<ColorCounter>, color: Color) : Read
         counter: entry.color == color ? entry.counter + 1 : entry.counter
       });
     });
-    // console.log("result of _addUsedColor", color, result);
     return result;
 }
 

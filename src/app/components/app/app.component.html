@@ -1,13 +1,23 @@
 <h1>{{title}}</h1>
-<h1>Colors</h1>
-<div class="colors">
+<table>
+<th>Colors</th>
+<th>Tubes</th>
+<th (click)="_solveProblem()">Solution</th>
+<tr>
+<td class="colors">
 <div *ngFor="let colorCounter of colors$ | async" (click)="_clickColor(colorCounter)">
     <color-counter [colorCounter]="colorCounter"></color-counter>
 </div>
-</div>
-<h1>Tubes</h1>
-<div class="tubes">
-<div *ngFor="let tube of tubes$ | async">
-    <tube [tube]="tube"></tube>
-</div>
-</div>
+</td>
+<td class="tubes">
+    <div *ngFor="let tube of tubes$ | async">
+        <tube [tube]="tube"></tube>
+    </div>
+</td>
+<td class="solution">
+    <div *ngFor="let move of moves$ | async">
+        <move [move]="move"></move>
+    </div>
+</td>
+</tr>
+</table>

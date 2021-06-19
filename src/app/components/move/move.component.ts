@@ -1,24 +1,28 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Color, ColorCounter, FontColor, RGBColor} from 'src/store/color';
+import { Move } from 'src/store/move';
 
 @Component({
-  selector: 'color-counter',
-  templateUrl: './color-counter.component.html',
-  styleUrls: ['./color-counter.component.sass']
+  selector: 'move',
+  templateUrl: './move.component.html',
+  styleUrls: ['./move.component.sass']
 })
-export class ColorCounterComponent implements OnInit {
-  @Input() colorCounter : ColorCounter = { color : Color.FREE, counter : -1 };
+export class MoveComponent implements OnInit {
+  @Input() move : Move = new Move([],0,0);
   backColor: string = "";
   fontColor: string = "";
-
+  source: number = 0;
+  target: number = 0;
   ngOnInit(): void {
-    var backColor = RGBColor.get(this.colorCounter.color);
+    this.source = this.move.getSource();
+    this.target = this.move.getTarget();
+    var backColor = RGBColor.get(this.move.getColor());
     if (backColor == undefined) {
       this.backColor = RGBColor.get(Color.FREE) || "gray";
     } else {
       this.backColor = backColor;
     }
-    var fontColor = FontColor.get(this.colorCounter.color);
+    var fontColor = FontColor.get(this.move.getColor());
     if (fontColor == undefined) {
       this.fontColor = FontColor.get(Color.FREE) || "black";
     } else {

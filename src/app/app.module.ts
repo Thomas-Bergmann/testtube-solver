@@ -7,25 +7,29 @@ import { AppComponent } from './components/app/app.component';
 import { ColorComponent } from './components/color/color.component';
 import { ColorCounterComponent } from './components/color-counter/color-counter.component';
 import { TubeComponent } from './components/tube/tube.component';
+import { MoveComponent } from './components/move/move.component';
 
 import { colorReducer } from '../store/color/color-reducers';
 import { tubeReducer } from '../store/tube/tube-reducers';
 import { environment } from '../environments/environment';
 import { ColorModule } from '../store/color/color-modules';
 import { TubeModule } from '../store/tube/tube-modules';
+import { solutionReducer } from 'src/store/solution/solution-reducers';
 
 @NgModule({
   declarations: [
     AppComponent,
     ColorComponent,
     ColorCounterComponent,
-    TubeComponent
+    TubeComponent,
+    MoveComponent
   ],
   imports: [
     BrowserModule,
     StoreModule.forRoot({
       colorState: colorReducer,
       tubeState: tubeReducer,
+      solutionState: solutionReducer
     }),
     ColorModule,
     TubeModule,

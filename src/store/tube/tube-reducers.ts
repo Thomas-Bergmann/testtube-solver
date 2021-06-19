@@ -41,5 +41,17 @@ function _addColorToTubes(tubes : ReadonlyArray<TestTube>, color : Color) : Read
       result.push(tube);
     }
   }
+  var countColors = _countColors(result);
+  while (result.length < countColors + 2)
+  {
+    result.push(new TestTube());
+  }
   return result;
+}
+
+function _countColors(tubes : ReadonlyArray<TestTube>) : number
+{
+  var colors = new Map<Color, number>();
+  tubes.forEach(t => t.content.forEach(c => colors.set(c, 1)));
+  return colors.size;
 }

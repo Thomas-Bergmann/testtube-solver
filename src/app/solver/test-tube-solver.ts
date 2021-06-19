@@ -1,13 +1,13 @@
-import { TestTube } from "../tube/testtube";
-import { Move } from "../solver/move";
-import { Color } from "../tube/color.enum";
+import { TestTube } from "src/store/tube";
+import { Move } from "src/store/move";
+import { Color } from "src/store/color";
 
 export class TestTubeSolver {
     usedSteps = Array<String>();
 
     constructor() { }
 
-    getSolution(tubes: TestTube[]): Array<Move> {
+    getSolution(tubes: readonly TestTube[]): Array<Move> {
         return this.getNextStep(tubes, new Array<Move>());
     }
 
@@ -19,7 +19,7 @@ export class TestTubeSolver {
         console.log(result);
     }
 
-    getStep(tubes: TestTube[]): String {
+    getStep(tubes: readonly TestTube[]): String {
         return tubes.map((t) => t.hash()).join(";");
     }
 
@@ -43,7 +43,7 @@ export class TestTubeSolver {
         return true;
     }
 
-    private getNextStep(tubes: TestTube[], previousMoves: Move[]): Array<Move> {
+    private getNextStep(tubes: readonly TestTube[], previousMoves: Move[]): Array<Move> {
         var hash = this.getStep(tubes);
         if (this.usedSteps.includes(hash))
         {
@@ -96,7 +96,7 @@ export class TestTubeSolver {
         return tube.getNumberOfColorSwitches() + 1;
     }
 
-    private findPossibleMoves(tubes: TestTube[]): Array<Move> {
+    private findPossibleMoves(tubes: readonly TestTube[]): Array<Move> {
         var possibleMoves = Array<Move>();
         for (var source = 0; source < tubes.length; source++) {
             for (var target = 0; target < tubes.length; target++) {

@@ -1,19 +1,33 @@
-import { Color } from "../tube/color.enum";
-import { TestTube } from "../tube/testtube";
+import { Color } from "../color";
+import { TestTube } from "../tube";
 
 export class Move {
-    private tubes: Array<TestTube>;
+    private tubes: readonly TestTube[];
     private source: number;
     private target: number;
     private color: Color;
     private amount: number;
 
-    constructor(tubes: TestTube[], source: number, target: number) {
+    constructor(tubes: readonly TestTube[], source: number, target: number) {
         this.tubes = tubes;
         this.source = source;
         this.target = target;
-        this.color = tubes[this.source].getLatestColor();
-        this.amount = tubes[this.source].getAmountOfLatestColor();
+        if (tubes.length == 0)
+        {
+            this.color = Color.FREE;
+            this.amount = 1;
+        } else {
+            this.color = tubes[this.source].getLatestColor();
+            this.amount = tubes[this.source].getAmountOfLatestColor();
+        }
+    }
+
+    getSource(): number {
+        return this.source;
+    }
+
+    getTarget(): number {
+        return this.target;
     }
 
     toString(): String {
