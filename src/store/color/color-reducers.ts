@@ -1,17 +1,23 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Color, ColorCounter, ColorState } from 'src/store/color';
-import { addColor, incrementColor } from './color-actions';
+import { Color, ColorCounter, ColorState, RGBColor } from 'src/store/color';
+import { addColor, incrementColor, resetColors } from './color-actions';
 
 export const colorFeatureKey = 'colorState';
 
+var initialColors : ColorCounter[] = [];
+RGBColor.forEach((value: String, key: Color) => {
+  initialColors.push({color: key, counter: 0});
+});
+
 const initialState : ColorState = {
-  colors : []
+  colors : initialColors
 }
 
 const _colorReducer = createReducer(
   initialState,
   on(addColor, (state, action) => _addColorToState(state, action.color)),
   on(incrementColor, (state, action) => _incrementColorToState(state, action.color)),
+  on(resetColors, (state, action) => initialState),
 );
 
 export function colorReducer(state: ColorState | undefined, action: Action) {

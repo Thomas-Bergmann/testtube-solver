@@ -10,3 +10,7 @@ export const incrementColor = createAction(
   'Increment Color',
   props<{ color: Color }>()
 );
+
+export const resetColors = createAction(
+  'Reset Color'
+);

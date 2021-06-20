@@ -6,9 +6,12 @@
 <th>Show Solution Step</th>
 <tr>
 <td class="colors">
-<div *ngFor="let colorCounter of colors$ | async" (click)="_clickColor(colorCounter)">
-    <color-counter [colorCounter]="colorCounter"></color-counter>
-</div>
+    <div *ngFor="let colorCounter of colors$ | async" (click)="_clickColor(colorCounter)">
+        <color-counter [colorCounter]="colorCounter"></color-counter>
+    </div>
+    <div *ngFor="let level of levels$ | async" (click)="_clickLevel(level)">
+        <level [level]="level"></level>
+    </div>
 </td>
 <td class="tubes">
     <div *ngFor="let tube of tubes$ | async">

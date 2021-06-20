@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { TestTube, TubeState } from "./tube-models";
-import { addColorToTube } from "./tube-actions";
+import { addColorToTube, resetTubes } from "./tube-actions";
 import { Color } from "../color/color-models";
 
 export const tubeFeatureKey = 'tubeState';
@@ -12,6 +12,7 @@ const initialState : TubeState = {
 const _tubeReducer = createReducer(
     initialState,
     on(addColorToTube, (state, action) => _addColorToState(state, action.color)),
+    on(resetTubes, (state, action) => initialState),
 );
 
 export function tubeReducer(state: TubeState | undefined, action: Action) {

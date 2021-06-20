@@ -5,3 +5,7 @@ export const addColorToTube = createAction(
   'Add Color to Tube',
   props<{ color: Color }>()
 );
+
+export const resetTubes = createAction(
+  'Reset Tubes'
+);

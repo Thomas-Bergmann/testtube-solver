@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { TubeState, TestTube, addColorToTube, selectTubes } from 'src/store/tube';
-import { ColorState, Color, ColorCounter, addColor, incrementColor, selectColors, RGBColor } from 'src/store/color';
+import { TubeState, TestTube, addColorToTube, selectTubes, resetTubes } from 'src/store/tube';
+import { ColorState, Color, ColorCounter, addColor, incrementColor, selectColors, RGBColor, resetColors } from 'src/store/color';
 import { Move } from 'src/store/move';
 import { SolutionState, selectMoves, solveProblem } from 'src/store/solution';
+import { Level, LevelState, selectLevels } from 'src/store/level';
 
 @Component({
   selector: 'app-root',
@@ -20,41 +21,33 @@ export class AppComponent implements OnInit {
   tubes$: Observable<readonly TestTube[]>;
   moves$: Observable<readonly Move[]>;
   steps: readonly TestTube[] = [];
+  levels$: Observable<readonly Level[]>;
   staticTubes: ReadonlyArray<TestTube> = [];
 
   constructor(
     private readonly colorStore: Store<ColorState>,
     private readonly tubeStore: Store<TubeState>,
-    private readonly solutionStore: Store<SolutionState>
+    private readonly solutionStore: Store<SolutionState>,
+    private readonly levelStore: Store<LevelState>
   ) {
     this.colors$ = colorStore.select(selectColors);
     this.tubes$ = tubeStore.select(selectTubes);
     this.moves$ = tubeStore.select(selectMoves);
+    this.levels$ = levelStore.select(selectLevels);
   }
 
   ngOnInit(): void {
-    RGBColor.forEach((value: String, key: Color) => {
-      this.colorStore.dispatch(addColor({ color : key }));
-    });
     this.tubes$.subscribe(t => this.staticTubes = t);
-    this.initColors();
   }
-  initColors(): void {
-    var colors : Color[] = [Color.ORANGE, Color.ORANGE, Color.PURPLE, Color.CYAN ];
-    colors.push(Color.AZURE, Color.AZURE, Color.RED, Color.ORANGE);
-    colors.push(Color.GREEN, Color.BLUE, Color.PURPLE, Color.PINK);
-    colors.push(Color.GRAY, Color.PINK, Color.CYAN, Color.BROWN);
-    colors.push(Color.BROWN, Color.CYAN, Color.FOREST, Color.GREEN);
-    colors.push(Color.YELLOW, Color.ORANGE, Color.RED, Color.BLUE);
-    colors.push(Color.RED, Color.FOREST, Color.YELLOW, Color.PINK);
 
-    colors.push(Color.BLUE, Color.YELLOW, Color.PURPLE, Color.RED);
-    colors.push(Color.GREEN, Color.BLUE, Color.GRAY, Color.BROWN);
-    colors.push(Color.PINK, Color.PURPLE, Color.GREEN, Color.FOREST);
-    colors.push(Color.AZURE, Color.GRAY, Color.BROWN, Color.AZURE);
-    colors.push(Color.FOREST, Color.GRAY, Color.YELLOW, Color.CYAN);
-
-    colors.forEach(c => this._clickColor({ color : c, counter: 1}))
+  _clickLevel(level: Level)
+  {
+    this.colorStore.dispatch(resetColors());
+    this.tubeStore.dispatch(resetTubes());
+    level.colors.forEach(c => {
+      this.colorStore.dispatch(incrementColor({ color : c }));
+      this.tubeStore.dispatch(addColorToTube({ color : c }));
+    });
   }
 
   _clickColor(colorCounter: ColorCounter)
