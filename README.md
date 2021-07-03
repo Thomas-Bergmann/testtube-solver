@@ -2,7 +2,7 @@
 
 The project was created to get hints for solving the Water Sort Puzzle game for [Android](https://play.google.com/store/apps/details?id=com.gma.water.sort.puzzle).
 
-![](resources/level_675.jpg)
+![](resources/level_675.png)
 
 The application contains some predefined levels, but you are able to fill the test tubes by your self, also.
 The solver does a brute force and may not found the best solution.
@@ -14,6 +14,15 @@ Another solver by [Ed Riccardi](https://github.com/kuking/WaterSortPuzzleSolver)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### How to use it
+* select a level like 705 or
+* select level 0 and click at each color above to fill it test tube by test tube- the number inside of the color box show, how often do you use the color
+- click on the solution section to start the solver
+- click a test tube and the target test tube for making your own move like in the game
+- click on a move (your or solution) to see on the right hand side the test tubes after that move.
+
+![](resources/screenshot.png)
 
 ## Build
 
