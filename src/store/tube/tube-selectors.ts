@@ -9,3 +9,8 @@ export const selectTubes = createSelector(
   selectFeature,
   (state: TubeState) => state.tubes
 );
+
+export const selectActiveTube = createSelector(
+  selectFeature,
+  (state: TubeState) => state.tubes[state.active_tube]
+);

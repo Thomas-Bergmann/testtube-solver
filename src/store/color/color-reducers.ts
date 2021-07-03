@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Color, ColorCounter, ColorState, RGBColor } from 'src/store/color';
+import { Color, ColorCounter, ColorState, RGBColor } from './color-models';
 import { addColor, incrementColor, resetColors } from './color-actions';
 
 export const colorFeatureKey = 'colorState';

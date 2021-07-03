@@ -14,13 +14,22 @@
     </div>
 </td>
 <td class="tubes">
-    <div *ngFor="let tube of tubes$ | async">
+    <div *ngFor="let tube of tubes$ | async" (click)="_selectTube(tube)">
         <tube [tube]="tube"></tube>
     </div>
 </td>
-<td class="solution" (click)="_solveProblem()">
-    <div *ngFor="let move of moves$ | async">
-        <move [move]="move" (click)="_clickMove(move)"></move>
+<td (click)="_solveProblem()">
+    <div class="yourMoves">
+        <p>Your Moves</p>
+        <div *ngFor="let move of yourMoves$ | async">
+            <move [move]="move" (click)="_clickMove(move)"></move>
+        </div>
+    </div>
+    <div class="solutionMoves">
+        <p>Solution</p>
+        <div *ngFor="let move of solutionMoves$ | async">
+            <move [move]="move" (click)="_clickMove(move)"></move>
+        </div>
     </div>
 </td>
 <td class="tubes">

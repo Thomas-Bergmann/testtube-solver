@@ -1,18 +1,22 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { TestTube, TubeState } from "./tube-models";
-import { addColorToTube, resetTubes } from "./tube-actions";
+import { findTube, TestTube, TubeState } from "./tube-models";
+import { addColorToTube, applyTubes, deselectTube, resetTubes, selectTube } from "./tube-actions";
 import { Color } from "../color/color-models";
 
 export const tubeFeatureKey = 'tubeState';
 const initialState : TubeState = {
-    tubes : [new TestTube(), new TestTube()]
+    tubes : [new TestTube(), new TestTube()],
+    active_tube : -1
 }
 
 const _tubeReducer = createReducer(
     initialState,
     on(addColorToTube, (state, action) => _addColorToState(state, action.color)),
     on(resetTubes, (state, action) => initialState),
+    on(selectTube, (state, action) => _selectTubeAtState(state, action.tube)),
+    on(deselectTube, (state, action) => _deselectTubeAtState(state)),
+    on(applyTubes, (state, action) => _applyTubesAtState(state, action.tubes)),
 );
 
 export function tubeReducer(state: TubeState | undefined, action: Action) {
@@ -55,4 +59,34 @@ function _countColors(tubes : ReadonlyArray<TestTube>) : number
   var colors = new Map<Color, number>();
   tubes.forEach(t => t.content.forEach(c => colors.set(c, 1)));
   return colors.size;
+}
+
+function _deselectTubeAtState(state:TubeState):TubeState
+{
+  return ({
+    ...state,
+    active_tube: -1,
+  });
+}
+
+function _selectTubeAtState(state:TubeState, tube:TestTube):TubeState
+{
+  var result = findTube(state.tubes, tube);
+  if (result == state.active_tube)
+  {
+    result = -1;
+  }
+  return ({
+    ...state,
+    active_tube: result,
+  });
+}
+
+function _applyTubesAtState(state:TubeState, tubes: ReadonlyArray<TestTube>):TubeState
+{
+  return ({
+    ...state,
+    tubes: tubes,
+    active_tube: -1,
+  });
 }

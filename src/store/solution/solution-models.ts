@@ -1,5 +1,6 @@
 import { Move } from "../move";
 
 export interface SolutionState {
-    moves: ReadonlyArray<Move>;
+    your_moves: ReadonlyArray<Move>;
+    solution_moves: ReadonlyArray<Move>;
 }

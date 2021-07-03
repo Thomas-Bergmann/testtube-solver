@@ -2,6 +2,7 @@ import { Color } from 'src/store/color';
 
 export interface TubeState {
     tubes: ReadonlyArray<TestTube>;
+    active_tube: number
 }
 
 export class TestTube {
@@ -97,4 +98,17 @@ export class TestTube {
         }
         return result;
     }
+}
+
+export function findTube(tubes:ReadonlyArray<TestTube>, tube?:TestTube | undefined): number
+{
+  var result = -1;
+  for(var i=0; i<tubes.length;i++)
+  {
+    if (tubes[i] == tube)
+    {
+      result = i;
+    }
+  }
+  return result;
 }
