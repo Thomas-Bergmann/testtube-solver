@@ -1,5 +1,11 @@
 # Water Sort Puzzle Solver with Angular
 
+## [Solve my Level](http://www.hatoka.de/testtube-solver/)
+
+Solve each level of Water Sort Puzzle game with this [solver](http://www.hatoka.de/testtube-solver/).
+
+## Project Info
+
 The project was created to get hints for solving the Water Sort Puzzle game for [Android](https://play.google.com/store/apps/details?id=com.gma.water.sort.puzzle).
 
 ![](resources/level_675.png)
