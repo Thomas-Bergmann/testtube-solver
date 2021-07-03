@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { TubeState, TestTube, addColorToTube, selectTubes, resetTubes, selectTube, selectActiveTube, applyTubes } from 'src/store/tube';
 import { ColorState, Color, ColorCounter, addColor, incrementColor, selectColors, RGBColor, resetColors } from 'src/store/color';
 import { Move } from 'src/store/move';
-import { SolutionState, selectSolutionMoves, selectYourMoves, solveProblem, addMove, selectYourLastMove } from 'src/store/solution';
+import { SolutionState, selectSolutionMoves, selectYourMoves, solveProblem, resetMoves, addMove, selectYourLastMove } from 'src/store/solution';
 import { Level, LevelState, selectLevels } from 'src/store/level';
 
 @Component({
@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
   {
     this.colorStore.dispatch(resetColors());
     this.tubeStore.dispatch(resetTubes());
+    this.solutionStore.dispatch(resetMoves());
     level.colors.forEach(c => {
       this.colorStore.dispatch(incrementColor({ color : c }));
       this.tubeStore.dispatch(addColorToTube({ color : c }));

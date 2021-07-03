@@ -37,6 +37,7 @@ function _resetMoves(state: SolutionState)
     return ({
         ...state,
         your_moves: [],
+        solution_moves: []
     });
 }
 
