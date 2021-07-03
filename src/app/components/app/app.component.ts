@@ -16,7 +16,6 @@ import { Level, LevelState, selectLevels } from 'src/store/level';
 })
 
 export class AppComponent implements OnInit {
-  title = 'testtube-solver';
   colors$: Observable<readonly ColorCounter[]>;
   tubes$: Observable<readonly TestTube[]>;
   yourMoves$: Observable<readonly Move[]>;
@@ -30,7 +29,7 @@ export class AppComponent implements OnInit {
     private readonly colorStore: Store<ColorState>,
     private readonly tubeStore: Store<TubeState>,
     private readonly solutionStore: Store<SolutionState>,
-    private readonly levelStore: Store<LevelState>
+    readonly levelStore: Store<LevelState>
   ) {
     this.colors$ = colorStore.select(selectColors);
     this.tubes$ = tubeStore.select(selectTubes);

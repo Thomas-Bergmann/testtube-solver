@@ -118,6 +118,21 @@ var level_675 : Color[] = [
   , Color.AZURE, Color.GRAY, Color.BROWN, Color.AZURE
   , Color.FOREST, Color.GRAY, Color.YELLOW, Color.CYAN ];
 
+var level_705 : Color[] = [
+  Color.CYAN, Color.RED, Color.GRAY, Color.PINK
+  , Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN
+  , Color.YELLOW, Color.CYAN, Color.PURPLE, Color.PINK
+  , Color.BLUE, Color.RED, Color.AZURE, Color.BROWN
+  , Color.ORANGE, Color.ORANGE, Color.AZURE, Color.PURPLE
+  , Color.CYAN, Color.BLUE, Color.BLUE, Color.YELLOW
+  , Color.RED, Color.PINK, Color.PURPLE, Color.YELLOW
+
+  , Color.FOREST, Color.FOREST, Color.GREEN, Color.GRAY
+  , Color.AZURE, Color.FOREST, Color.BROWN, Color.AZURE
+  , Color.FOREST, Color.GREEN, Color.YELLOW, Color.ORANGE
+  , Color.ORANGE, Color.GREEN, Color.PINK, Color.GRAY
+  , Color.GRAY, Color.CYAN, Color.BROWN, Color.BROWN ];
+
 const initialState : LevelState = {
 levels : [
   { level: 0, colors: level_0},
@@ -132,6 +147,7 @@ levels : [
   { level: 227, colors: level_227},
   { level: 483, colors: level_483},
   { level: 675, colors: level_675},
+  { level: 705, colors: level_705},
 ]}
 
 const _levelReducer = createReducer(
