@@ -1,7 +1,7 @@
 import { TestTubeSolver } from './test-tube-solver';
-import { Color } from '../tube/color.enum';
-import { TestTube } from '../tube/testtube';
-import { Move } from './move';
+import { Color } from 'src/store/color/color-models';
+import { TestTube } from 'src/store/tube/tube-models';
+import { Move } from 'src/store/move';
 
 describe('TestTubeSolver', () => {
   const solver = new TestTubeSolver();

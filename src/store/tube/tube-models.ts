@@ -50,6 +50,10 @@ export class TestTube {
         return this.content.length == 0;
     }
 
+    getSpace(): number {
+        return 4 - this.content.length;
+    }
+
     getLatestColor(): Color {
         if (this.isEmpty()) {
             return Color.FREE;

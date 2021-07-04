@@ -18,7 +18,8 @@ export class Move {
             this.amount = 1;
         } else {
             this.color = tubes[this.source].getLatestColor();
-            this.amount = tubes[this.source].getAmountOfLatestColor();
+            // min free places and amount of top color
+            this.amount = tubes[this.target].getSpace() < tubes[this.source].getAmountOfLatestColor() ? tubes[this.target].getSpace() : tubes[this.source].getAmountOfLatestColor();
         }
     }
 
