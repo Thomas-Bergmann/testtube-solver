@@ -1,41 +1,54 @@
 <h1>Water Sort Puzzle Resolver</h1>
-<table>
-<th>Colors and Levels</th>
-<th>Tubes</th>
-<th (click)="_solveProblem()">Solution</th>
-<th>Show Solution Step</th>
-<tr>
-<td class="colors">
-    <div *ngFor="let colorCounter of colors$ | async" (click)="_clickColor(colorCounter)">
-        <color-counter [colorCounter]="colorCounter"></color-counter>
-    </div>
-    <div *ngFor="let level of levels$ | async" (click)="_clickLevel(level)">
-        <level [level]="level"></level>
-    </div>
-</td>
-<td class="tubes">
+<div class="outerbox">
+  <div class="header">Predefined levels</div>
+  <div class="levels">
+      <div *ngFor="let level of levels$ | async" (click)="_clickLevel(level)">
+          <level [level]="level"></level>
+      </div>
+   </div>
+</div>
+
+<div class="outerbox">
+  <div class="header">Fill with color</div>
+  <div class="colors">
+      <div *ngFor="let colorCounter of colors$ | async" (click)="_clickColor(colorCounter)">
+          <color-counter [colorCounter]="colorCounter"></color-counter>
+      </div>
+  </div>
+</div>
+
+<div class="outerbox">
+  <div class="header">Verify and Try</div>
+  <div class="tubes">
     <div *ngFor="let tube of tubes$ | async" (click)="_selectTube(tube)">
         <tube [tube]="tube"></tube>
     </div>
-</td>
-<td (click)="_solveProblem()">
-    <div class="yourMoves">
-        <p>Your Moves</p>
-        <div *ngFor="let move of yourMoves$ | async">
-            <move [move]="move" (click)="_clickMove(move)"></move>
-        </div>
+  </div>
+</div>
+
+<div class="outerbox" (click)="_solveProblem()">
+  <div class="header">Your Moves</div>
+  <div class="yourMoves">
+      <div *ngFor="let move of yourMoves$ | async">
+          <move [move]="move" (click)="_clickMove(move)"></move>
+      </div>
+  </div>
+</div>
+
+<div class="outerbox" (click)="_solveProblem()">
+  <div class="header">Solution</div>
+  <div class="solutionMoves">
+    <div *ngFor="let move of solutionMoves$ | async">
+        <move [move]="move" (click)="_clickMove(move)"></move>
     </div>
-    <div class="solutionMoves">
-        <p>Solution</p>
-        <div *ngFor="let move of solutionMoves$ | async">
-            <move [move]="move" (click)="_clickMove(move)"></move>
-        </div>
-    </div>
-</td>
-<td class="tubes">
+  </div>
+</div>
+
+<div class="outerbox">
+  <div class="header">Selected Step</div>
+  <div class="tubes">
     <div *ngFor="let tube of steps">
-        <tube [tube]="tube"></tube>
+      <tube [tube]="tube"></tube>
     </div>
-</td>
-</tr>
-</table>
+  </div>
+</div>
